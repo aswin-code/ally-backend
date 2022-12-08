@@ -4,8 +4,7 @@
   "description": "api",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app",
-    "deploy":"serverless deploy"
+    "start": "node app"
   },
   "author": "Aswin",
   "license": "ISC",
