@@ -6,8 +6,8 @@ exports.sendOtp = async (email, otp) => {
 
             service: 'Gmail',
             auth: {
-                user: 'aswinmeet1@gmail.com',
-                pass: 'fkqjppxeemuqfndj',
+                user: process.env.NODEMAILER_USER,
+                pass: process.env.NODEMAILER_PASS,
             },
         })
 
