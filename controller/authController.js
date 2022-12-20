@@ -120,7 +120,7 @@ exports.refresh = asyncHandler(async (req, res) => {
 exports.sendOtp = asyncHandler(async (req, res) => {
     const { email } = req.query;
     if (!email) return res.status(400).json({ message: 'All fields require' });
-    await findOneAndDelete({ email })
+    await otpModel.findOneAndDelete({ email })
     const otp = Math.floor(1000 + Math.random() * 9000)
     const verifyOtp = new otpModel({
         email, otp
