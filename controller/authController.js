@@ -5,7 +5,8 @@ const asyncHandler = require('express-async-handler')
 const otpModel = require('../models/otpModel');
 const nodemailer = require('../utils/nodemailer')
 const jwtDecode = require('jwt-decode');
-const token = require('../utils/Token')
+const token = require('../utils/Token');
+const { findOneAndDelete } = require('../models/userModel');
 
 // register 
 exports.register = asyncHandler(async (req, res) => {
@@ -117,8 +118,9 @@ exports.refresh = asyncHandler(async (req, res) => {
 // otp 
 
 exports.sendOtp = asyncHandler(async (req, res) => {
-    const { email } = req.body;
+    const { email } = req.query;
     if (!email) return res.status(400).json({ message: 'All fields require' });
+    await findOneAndDelete({ email })
     const otp = Math.floor(1000 + Math.random() * 9000)
     const verifyOtp = new otpModel({
         email, otp
